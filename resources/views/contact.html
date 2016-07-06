@@ -1,0 +1,145 @@
+
+{% extends 'app.html' %}
+{% block content%}
+<div class=" container-fluid body">
+    <div class="container contact">
+        <h1>Contact Us</h1>
+        <p>A contact form requires some method of emailing the contents of the form to an email address. The most common way to do this is to use some kind of server script (PHP for example). I would be happy to send you the PHP
+
+            code for the contact form for your chosen template, I charge £20.00GBP for this. Simply <a href="http://www.araynordesign.co.uk/contact.php">contact me</a>
+            for more details.</p>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 contact">
+                <form role="form" action="{{ url_route('sign-up') }}" method="post">
+                    <div class="row">
+                        <div class="col-md-12 text-center" style="margin: 0 0 20px ;">
+                            <span class="status alert alert-warning" style="display: none;"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group input-group col-xs-12 floating-label-form-group">
+                                <span class="input-group-addon"> <i class="fa fa-user fa-lg"></i> </span>
+
+                                <label for="name">Full Name</label>
+
+                                <input class="form-control" type="text" name="name" value="{{ data.name }}" id="name" placeholder="Full Name">
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group input-group col-xs-12 floating-label-form-group">
+                                <span class="input-group-addon"> <i class="fa fa-phone fa-lg"></i> </span>
+
+                                <label for="tel">Telephone</label>
+
+                                <input class="form-control" type="text" name="tel" value="{{ data.tel }}" id="tel" placeholder="Telephone">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group input-group col-xs-12 floating-label-form-group">
+                                <span class="input-group-addon"> <i class="fa fa-mobile fa-lg"></i> </span>
+
+                                <label for="mob">Mobile</label>
+
+                                <input class="form-control" type="text" name="mobile" value="{{ data.mobile }}"id="mob" placeholder="Mobile">
+                            </div>
+                            <div class="form-group input-group col-xs-12 floating-label-form-group">
+                                <span class="input-group-addon"> <i class="fa fa-map-marker fa-lg"></i> </span>
+
+                                <label for="address">Address</label>
+
+                                <input class="form-control" type="text" name="address" value="{{ data.address }}" id="address" placeholder="Address">
+                            </div>              
+                            <div class="form-group input-group col-xs-12 floating-label-form-group">
+                                <span class="input-group-addon"> <i class="fa fa-envelope-o fa-lg"></i> </span>
+                                <label for="email">Email Address</label>
+                                <input class="form-control" type="email" name="email" value="{{ data.email }}" id="email" placeholder="Email Address">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group input-group col-xs-12 floating-label-form-group">
+                                        <span class="input-group-addon"> <i class="fa fa-lock fa-lg"></i> </span>
+
+                                        <label for="pass">Password</label>
+
+                                        <input class="form-control" type="password" name="pass" id="pass" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group input-group col-xs-12 floating-label-form-group">
+                                        <span class="input-group-addon"> <i class="fa fa-lock fa-lg"></i> </span>
+
+                                        <label for="repass">Confirm Password</label>
+
+                                        <input class="form-control" type="password" name="repass" id="repass" placeholder="Confirm Password">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group input-group col-xs-12 floating-label-form-group">
+                                <span class="input-group-addon"> <i class="fa fa-pencil-square-o fa-lg"></i> </span>
+
+                                <label for="diag">Diagnostic</label>
+
+                                <select name="diagnostic" id="diag"  class="form-control">
+                                    <option value="Kidney Function Investigation | تحاليل الكلي">Kidney Function Investigation | تحاليل الكلي</option>
+                                    <option value="Hair Fall | تحاليل الخاصة بتساقط الشعر"> Hair Fall | تحاليل الخاصة بتساقط الشعر</option>
+                                    <option value="Chronic Diarrhea |  اسهال مزمن">Chronic Diarrhea |  اسهال مزمن</option>
+                                    <option value="Pre-Marital Examinations | تحاليل ما قبل الزواج"> Pre-Marital Examinations | تحاليل ما قبل الزواج</option>
+                                    <option value="Hepatitis Viral Markers |  الالتهاب الكبدى الفيروسي">Hepatitis Viral Markers |  الالتهاب الكبدى الفيروسي</option>
+                                    <option value="Immunological Hepatitis | الالتهاب الكبدى المناعي تحاليل ما قبل العمليات">Immunological Hepatitis | الالتهاب الكبدى المناعي تحاليل ما قبل العمليات</option>
+                                    <option value="Pre-Operative Tests | تحاليل ما قبل العمليات">Pre-Operative Tests | تحاليل ما قبل العمليات</option>
+                                    <option value="Pregnancy Follow Up Tests  | تحاليل متابعة الحمل"> Pregnancy Follow Up Tests  | تحاليل متابعة الحمل</option>
+                                    <option value="Neonatal Screening |  فحص حديثى الولادة">Neonatal Screening |  فحص حديثى الولادة</option>
+                                    <option value="Osteoporosis | تحاليل هشاشة العظام"> Osteoporosis | تحاليل هشاشة العظام</option>
+                                    <option value="General Check Up |  تحاليل اثبات النسب">General Check Up |  تحاليل اثبات النسب</option>
+                                    <option value="Liver Function Tests | اهم وظائف الكبد"> Liver Function Tests | اهم وظائف الكبد</option>
+                                    <option value="Disputed Paternity |  الفحص الدورى الشامل">Disputed Paternity |  الفحص الدورى الشامل</option>
+                                    <option value="Infertility | الخصوبة"> Infertility | الخصوبة</option>
+                                    <option value="Toxicology Panel |  تحاليل السموم و المخدرات">Toxicology Panel |  تحاليل السموم و المخدرات</option>
+                                    <option value=" Fever of Unknown Origin | ارتفاع الحرارة بدون سبب واضح"> Fever of Unknown Origin | ارتفاع الحرارة بدون سبب واضح</option>
+                                    <option value="Thyroid Investigations |  تحاليل الغدة الدرقيه">Thyroid Investigations |  تحاليل الغدة الدرقيه</option>
+                                    <option value="Rheumatology Profile |  اهم تحاليل الامراض الروماتزمية والام المفاصل"> Rheumatology Profile |  اهم تحاليل الامراض الروماتزمية والام المفاصل</option>
+                                    <option value="Repeated Abortion | مجموعة تحاليل السقط المتكرر">Repeated Abortion | مجموعة تحاليل السقط المتكرر</option>
+                                    <option value="Immunological Inflammatory Bowel Disorders |  التهاب الامعاء المناعي"> Immunological Inflammatory Bowel Disorders |  التهاب الامعاء المناعي</option>
+                                    <option value="Rheumatology Profile | اهم تحاليل الامراض االروماتزمية والام المفاصل">Rheumatology Profile | اهم تحاليل الامراض االروماتزمية والام المفاصل</option>
+                                    <option value="Tuberculosis | تحاليل ميكروب الدرن"> Tuberculosis | تحاليل ميكروب الدرن</option>
+                                    <option value="Bleeding Tendency Investigations |  تحاليل السيوله">Bleeding Tendency Investigations |  تحاليل السيوله</option>
+                                    <option value="Lupus Erythromatosis | الذئبة الحمراء"> Lupus Erythromatosis | الذئبة الحمراء</option>
+                                    <option value="Sexually Transmitted Disease | الصحه الجنسيه">Sexually Transmitted Disease | الصحه الجنسيه</option>
+                                    <option value="Diabetic Investigations | تحاليل السكر"> Diabetic Investigations | تحاليل السكر</option>
+                                    <option value="Hypertension |  الضغط المرتفع">Hypertension |  الضغط المرتفع</option>
+                                    <option value="Helico Bacter Pylori | مجموعه تحليل جرثومه المعدة (الميكروب الحلازونى)"> Helico Bacter Pylori | مجموعه تحليل جرثومه المعدة (الميكروب الحلازونى)</option>
+                                    <option value="Lipid Investigations |   تحاليل الدهون">Lipid Investigations |   تحاليل الدهون</option>
+                                    <option value="Chronic Headache | الصداع المزمن"> Chronic Headache | الصداع المزمن</option>
+                                    <option value="Heamostatic Function |  مجموعه تحاليل السيوله">Heamostatic Function |  مجموعه تحاليل السيوله</option>
+                                    <option value="Cardiac Markers | تحاليل القلب"> Cardiac Markers | تحاليل القلب</option>
+                                    <option value="Allergy |  تحاليل الحساسية">Allergy |  تحاليل الحساسية</option>
+                                    <option value="Anemia profile |  مجموعه تحاليل الانيميا"> Anemia profile |  مجموعه تحاليل الانيميا</option>
+
+                                </select>                         
+                            </div>
+                            <div class="form-group input-group col-xs-12 floating-label-form-group message-addon">
+                                <span class="input-group-addon"> <i class="fa fa-paragraph fa-lg"></i> </span>
+                                <label for="sug">Suggestion / Complain</label>
+                                <textarea placeholder="Suggestion / Complain" class="form-control" name="description" id="sug" rows="5">{{ data.description }}</textarea>
+                            </div>
+                            {{ token_input()|raw }}
+                            <br>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default btn-lg">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div> 
+    </div>
+</div>
+{% endblock %}

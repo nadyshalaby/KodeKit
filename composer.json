@@ -1,0 +1,39 @@
+{
+    "name": "taekunger/kodekit",
+    "description": "Custom PHP micro-framework for developing any kind of application simple or complex supports Security against CSRF, XSS, SQL Injection ....etc , supports Kint dumping library",
+    "keywords": ["framework", "kodekit"],
+    "homepage": "https://github.com/taekunger/KodeKit",
+    "license": "MIT",
+    "type": "project",
+    "authors": [
+        {
+            "name": "nady shalaby",
+            "email": "nady80878@gmail.com",
+            "homepage": "http://www.corecave.com",
+            "role": "Back-end Developer"
+        }
+    ],
+    "require":
+            {
+                "facebook/php-sdk-v4": "^5.1",
+                "php": "^5.4|^7.0",
+                "google/apiclient": "^1.0",
+                "swiftmailer/swiftmailer": "^5.4",
+                "twig/twig": "^1.24",
+                "nesbot/carbon": "^1.21",
+                "symfony/var-dumper": "*"
+            },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app"
+        },
+        "classmap": [
+            "resources/I18N/Arabic.php"
+        ],
+        "files": [
+            "bootstrap/init.php",
+            "bootstrap/helpers.php"
+        ]
+    }
+
+}

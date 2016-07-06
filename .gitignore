@@ -1,0 +1,5 @@
+composer.phar
+/vendor/
+.phpintel/
+nbproject/
+composer.lock

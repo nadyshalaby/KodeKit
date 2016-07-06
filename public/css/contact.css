@@ -1,0 +1,69 @@
+body{
+    font-family: "Open Sans", sans-serif;
+    font-size: 12pt;
+
+}
+h1{
+    color: red;
+    text-align: center;
+}
+.contact {   
+    background-color:rgba(255,255,255,.7);
+    box-shadow: 0 0 13px #000;
+    border-radius: 10px;
+    margin-top:20px;
+}
+
+.section{
+    padding: 10px;
+}
+
+/*-------------------------------Start Error design------------------------------- */
+.error-box{
+    position:fixed;
+    margin-left:-350px;
+    top:0;
+    left: 50%;
+    width:700px;
+    word-wrap:wrap;
+    z-index:999;
+    cursor:pointer;
+    background:#68c497;
+    font-family: inherit;
+    font-size: 12pt;
+    display:none;
+    font-weight:bold;
+    border-bottom-left-radius:10px;
+    border-bottom-right-radius:10px;
+    direction: ltr;
+    box-shadow:1px 2px 7px #000;
+}
+.error-box .msg-box{  
+    list-style: none;
+    background-color: rgb(253, 253, 253);
+}
+.msg-error{
+    color:#b61828;
+    font-weight:bolder;
+}
+.msg-success{
+    color:#21f725;
+    font-weight:bolder;
+}
+.msg-warning{
+    color:#f5d948;
+    font-weight:bolder;
+}
+.msg-info{
+    color:#00aaff;
+    font-weight:bolder;
+}
+
+.clear:after{
+    content: ".";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear:both;
+}
+/*-------------------------------End Of Error Design-------------------------------*/

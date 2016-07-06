@@ -1,0 +1,304 @@
+{% extends 'app.html' %}
+
+{% block content %}
+<div class=" container-fluid body">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 contact">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a class="tab-anchor" href="#account" data-toggle="tab" >Account</a></li>
+                <li role="presentation"><a class="tab-anchor" href="#complain" data-toggle="tab">Complain</a></li>
+                <li role="presentation"><a class="tab-anchor" href="#messages" data-toggle="tab">Messages <span class="badge">{{ msgs_count }}</span></a></li>
+            </ul>
+
+
+            <div class="tab-content ">
+                <div class="section tab-pane active" id="account">
+                    <form role="form" action="{{ url_route('user.update') }}" id="account-form" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-3">
+                                <a class="thumbnail upload">
+                                    {% if user.avatar is empty %}
+                                    <img id="img" src="{{ url_img('avatar.png') }}" alt="Avatar">                       
+                                    {% else %}
+                                    <img id="img" src="{{ url_res(user.avatar) }}" alt="Avatar">
+                                    {% endif %}
+
+                                </a>
+                                <div class="row">
+                                    <div class="col-md-8 col-md-offset-4">   
+                                        <input type="file" name="avatar" style="visibility:hidden ;">
+                                        <button  type="button" class="btn upload btn-default">change</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-md-5 ">
+                                <div class="panel panel-default">
+                                    <!-- Default panel contents -->
+                                    <div class="panel-heading">Personal</div>
+                                    <div class="panel-body">
+                                        <p>
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <div class="input-group ">                         
+                                                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                                                    <input type="text" class="form-control" name="name" placeholder="Full Name" value="{{ user.name }}" aria-describedby="sizing-addon1">
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="input-group ">
+
+                                                    <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></span>
+                                                    <input type="text" class="form-control" name="tel" placeholder="Telephone" value="{{ user.tel }}"aria-describedby="sizing-addon2">
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="input-group ">
+
+                                                    <span class="input-group-addon" id="sizing-addon3"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span></span>
+                                                    <input type="text" class="form-control" name="mobile" placeholder="Mobile" value="{{ user.mobile }}"aria-describedby="sizing-addon3">
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="input-group ">
+
+                                                    <span class="input-group-addon" id="sizing-addon4"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></span>
+                                                    <input type="text" class="form-control" name="address" placeholder="Address" value="{{ user.address }}" aria-describedby="sizing-addon4">
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="input-group ">
+
+                                                    <span class="input-group-addon" id="sizing-addon5"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
+                                                    <input type="email" class="form-control" name="email" placeholder="Email" value="{{ user.email }}"aria-describedby="sizing-addon5">
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="input-group ">
+
+                                                    <span class="input-group-addon" id="sizing-addon12"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span></span>
+                                                    <select name="gender" class="form-control">
+                                                        {% if user.gender == 'male' %}
+                                                        <option value="male" >male</option>
+                                                        <option value="female" >female</option>                                         
+                                                        {% else %}
+                                                        <option value="female" >female</option>                                         
+                                                        <option value="male" >male</option>
+                                                        {% endif %}
+                                                    </select>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                        </p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <div class="panel panel-default">
+                                    <!-- Default panel contents -->
+                                    <div class="panel-heading">Credentials</div>
+                                    <div class="panel-body">
+                                        <p>
+                                        <ul class="list-group">                                      
+                                            <li class="list-group-item">
+                                                <div class="input-group ">
+
+                                                    <span class="input-group-addon" id="sizing-addon6"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+                                                    <input type="password" class="form-control" name="pass" placeholder="Current Password" aria-describedby="sizing-addon6">
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="input-group ">
+
+                                                    <span class="input-group-addon" id="sizing-addon7"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></span>
+                                                    <input type="password" class="form-control" name="newpass" placeholder="New Password" aria-describedby="sizing-addon7">
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="input-group ">
+
+                                                    <span class="input-group-addon" id="sizing-addon8"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></span>
+                                                    <input type="password" class="form-control" name="repass" placeholder="Confirm Password" aria-describedby="sizing-addon8">
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel panel-default">
+                                            <!-- Default panel contents -->
+                                            <div class="panel-heading">Actions</div>
+                                            <div class="panel-body">
+                                                <p>
+                                                <ul class="list-group">                                      
+                                                    <li class="list-group-item">
+                                                        <button type="submit" class="btn btn-primary" >Update</button>
+                                                        <button type="button" id="account-delete" class="btn btn-danger"  >Delete Account</button>
+                                                    </li>
+                                                </ul>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{ token_put()|raw }}
+                    </form>
+                </div>
+                <div class="section tab-pane" id="complain">
+                    <span class="label label-success">replied</span>
+                    <span class="label label-warning">bending</span>
+                    <span class="label label-danger">refused</span>
+                    <form role="form" id="complain-form" action="{{ url_route('complain.new') }}" method="post" enctype="multipart/form-data">
+                        <div class="table-responsive">
+                            <table class="table table-hover"> 
+                                <thead> 
+                                    <tr> 
+                                        <th>Complain ID</th> 
+                                        <th>Diagnostic</th>
+                                        <th>Description</th>
+                                        <th>Date/Time</th>
+                                    </tr> 
+                                </thead> 
+                                <tbody> 
+                                    {% if complains is not empty %}
+                                    {% for complain in complains %}
+                                    {% if complain.status == 'bending' %}
+                                    <tr class="warning"> 
+                                        {% elseif complain.status == 'replied' %}
+                                    <tr class="success"> 
+                                        {% elseif complain.status == 'refused' %}
+                                    <tr class="danger"> 
+                                        {% endif %}
+                                        <th scope="row">{{ complain.id }}</th> 
+                                        <td>{{ complain.diagnostic }}</td> 
+                                        <td>{{ strip(complain.description)|raw }} <a data-complain-id="{{ complain.id }}" class="read-more" href="#">Read more...</a></td> 
+                                        <td>{{ time(complain.created_at) }}</td> 
+                                    </tr> 
+                                    {% endfor %}
+                                    {% endif %}
+                                </tbody> 
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <!-- Default panel contents -->
+                                    <div class="panel-heading">Actions</div>
+                                    <div class="panel-body">
+                                        <p>
+                                        <ul class="list-group">                                      
+                                            <li class="list-group-item">
+                                                <div class="form-group input-group col-xs-12 floating-label-form-group">
+                                                    <span class="input-group-addon"> <i class="fa fa-pencil-square-o fa-lg"></i> </span>
+
+                                                    <label for="diag">Diagnostic</label>
+
+                                                    <select name="diagnostic" id="diag"  class="form-control">
+                                                        <option value="Kidney Function Investigation | تحاليل الكلي">Kidney Function Investigation | تحاليل الكلي</option>
+                                                        <option value="Hair Fall | تحاليل الخاصة بتساقط الشعر"> Hair Fall | تحاليل الخاصة بتساقط الشعر</option>
+                                                        <option value="Chronic Diarrhea |  اسهال مزمن">Chronic Diarrhea |  اسهال مزمن</option>
+                                                        <option value="Pre-Marital Examinations | تحاليل ما قبل الزواج"> Pre-Marital Examinations | تحاليل ما قبل الزواج</option>
+                                                        <option value="Hepatitis Viral Markers |  الالتهاب الكبدى الفيروسي">Hepatitis Viral Markers |  الالتهاب الكبدى الفيروسي</option>
+                                                        <option value="Immunological Hepatitis | الالتهاب الكبدى المناعي تحاليل ما قبل العمليات">Immunological Hepatitis | الالتهاب الكبدى المناعي تحاليل ما قبل العمليات</option>
+                                                        <option value="Pre-Operative Tests | تحاليل ما قبل العمليات">Pre-Operative Tests | تحاليل ما قبل العمليات</option>
+                                                        <option value="Pregnancy Follow Up Tests  | تحاليل متابعة الحمل"> Pregnancy Follow Up Tests  | تحاليل متابعة الحمل</option>
+                                                        <option value="Neonatal Screening |  فحص حديثى الولادة">Neonatal Screening |  فحص حديثى الولادة</option>
+                                                        <option value="Osteoporosis | تحاليل هشاشة العظام"> Osteoporosis | تحاليل هشاشة العظام</option>
+                                                        <option value="General Check Up |  تحاليل اثبات النسب">General Check Up |  تحاليل اثبات النسب</option>
+                                                        <option value="Liver Function Tests | اهم وظائف الكبد"> Liver Function Tests | اهم وظائف الكبد</option>
+                                                        <option value="Disputed Paternity |  الفحص الدورى الشامل">Disputed Paternity |  الفحص الدورى الشامل</option>
+                                                        <option value="Infertility | الخصوبة"> Infertility | الخصوبة</option>
+                                                        <option value="Toxicology Panel |  تحاليل السموم و المخدرات">Toxicology Panel |  تحاليل السموم و المخدرات</option>
+                                                        <option value=" Fever of Unknown Origin | ارتفاع الحرارة بدون سبب واضح"> Fever of Unknown Origin | ارتفاع الحرارة بدون سبب واضح</option>
+                                                        <option value="Thyroid Investigations |  تحاليل الغدة الدرقيه">Thyroid Investigations |  تحاليل الغدة الدرقيه</option>
+                                                        <option value="Rheumatology Profile |  اهم تحاليل الامراض الروماتزمية والام المفاصل"> Rheumatology Profile |  اهم تحاليل الامراض الروماتزمية والام المفاصل</option>
+                                                        <option value="Repeated Abortion | مجموعة تحاليل السقط المتكرر">Repeated Abortion | مجموعة تحاليل السقط المتكرر</option>
+                                                        <option value="Immunological Inflammatory Bowel Disorders |  التهاب الامعاء المناعي"> Immunological Inflammatory Bowel Disorders |  التهاب الامعاء المناعي</option>
+                                                        <option value="Rheumatology Profile | اهم تحاليل الامراض االروماتزمية والام المفاصل">Rheumatology Profile | اهم تحاليل الامراض االروماتزمية والام المفاصل</option>
+                                                        <option value="Tuberculosis | تحاليل ميكروب الدرن"> Tuberculosis | تحاليل ميكروب الدرن</option>
+                                                        <option value="Bleeding Tendency Investigations |  تحاليل السيوله">Bleeding Tendency Investigations |  تحاليل السيوله</option>
+                                                        <option value="Lupus Erythromatosis | الذئبة الحمراء"> Lupus Erythromatosis | الذئبة الحمراء</option>
+                                                        <option value="Sexually Transmitted Disease | الصحه الجنسيه">Sexually Transmitted Disease | الصحه الجنسيه</option>
+                                                        <option value="Diabetic Investigations | تحاليل السكر"> Diabetic Investigations | تحاليل السكر</option>
+                                                        <option value="Hypertension |  الضغط المرتفع">Hypertension |  الضغط المرتفع</option>
+                                                        <option value="Helico Bacter Pylori | مجموعه تحليل جرثومه المعدة (الميكروب الحلازونى)"> Helico Bacter Pylori | مجموعه تحليل جرثومه المعدة (الميكروب الحلازونى)</option>
+                                                        <option value="Lipid Investigations |   تحاليل الدهون">Lipid Investigations |   تحاليل الدهون</option>
+                                                        <option value="Chronic Headache | الصداع المزمن"> Chronic Headache | الصداع المزمن</option>
+                                                        <option value="Heamostatic Function |  مجموعه تحاليل السيوله">Heamostatic Function |  مجموعه تحاليل السيوله</option>
+                                                        <option value="Cardiac Markers | تحاليل القلب"> Cardiac Markers | تحاليل القلب</option>
+                                                        <option value="Allergy |  تحاليل الحساسية">Allergy |  تحاليل الحساسية</option>
+                                                        <option value="Anemia profile |  مجموعه تحاليل الانيميا"> Anemia profile |  مجموعه تحاليل الانيميا</option>
+
+                                                    </select>                         
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="form-group input-group col-xs-12 floating-label-form-group message-addon">
+                                                    <span class="input-group-addon"> <i class="fa fa-paragraph fa-lg"></i> </span>
+                                                    <label for="sug">Suggestion / Complain</label>
+                                                    <textarea placeholder="Suggestion / Complain" class="form-control" name="description" id="sug" rows="5">{{ data.description }}</textarea>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item text-center">
+                                                <button type="submit" class="btn btn-primary" >Send</button>
+                                                <button type="reset" class="btn btn-danger"  >Clear</button>
+                                            </li>
+                                        </ul>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{ token_input(false)|raw }}
+                    </form>
+                    
+                </div>
+                
+                <div class="tab-pane section" id="messages">
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        {% if msgs is not empty %}
+                        {% for msg in msgs %}
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <div class="row">
+                                        <div class="col-md-10 center-block">
+                                            <a role="button"  data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                {{ msg.title|raw }}
+                                            </a>        
+                                        </div>
+                                        <div class="col-md-2">
+                                            {% if not msg.viewed %}
+                                            <button type="button" id="msg-seen" data-id="{{ msg.id }}" class="btn btn-default" >Seen</button>                                           
+                                            {% else %}
+                                            <button type="button"  disabled class="btn btn-success" >Seen</button>
+                                            {% endif %}
+                                            <button type="button" id="msg-delete" data-id="{{ msg.id }}" class="btn btn-danger" >Delete</button>
+                                        </div>
+                                    </div>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <h6><b><u>Since</u> :</b></h6>
+                                    <p>{{ readable_time( msg.created_at ) }}</p>
+                                    <h6><b><u>Says</u> :</b></h6>
+                                    <p>{{ msg.body }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+                </div>
+            </div>
+          
+{% endblock %}

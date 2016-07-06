@@ -1,0 +1,222 @@
+{% extends 'app.html' %}
+
+{% block content %}
+<div class=" container-fluid body">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 contact">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a class="tab-anchor" href="#account" data-toggle="tab" >Account</a></li>
+                <li role="presentation"><a class="tab-anchor" href="#admin" data-toggle="tab">Admin Requests <span class="badge">{{ requests_count }}</span></a></li>
+            </ul>
+            <div class="tab-content ">
+                <div class="section tab-pane active" id="account">
+                    <form role="form" action="{{ url_route('user.update') }}" id="account-form" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-3">
+                                <a class="thumbnail upload">
+                                    {% if user.avatar is empty %}
+                                    <img id="img" src="{{ url_img('avatar.png') }}" alt="Avatar">                       
+                                    {% else %}
+                                    <img id="img" src="{{ url_res(user.avatar) }}" alt="Avatar">
+                                    {% endif %}
+
+                                </a>
+                                <div class="row">
+                                    <div class="col-md-8 col-md-offset-4">   
+                                        <input type="file" name="avatar" style="visibility:hidden ;">
+                                        <button  type="button" class="btn upload btn-default">change</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-md-5 ">
+                                <div class="panel panel-default">
+                                    <!-- Default panel contents -->
+                                    <div class="panel-heading">Personal</div>
+                                    <div class="panel-body">
+                                        <p>
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <div class="input-group ">                         
+                                                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                                                    <input type="text" class="form-control" name="name" placeholder="Full Name" value="{{ user.name }}" aria-describedby="sizing-addon1">
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="input-group ">
+
+                                                    <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></span>
+                                                    <input type="text" class="form-control" name="tel" placeholder="Telephone" value="{{ user.tel }}"aria-describedby="sizing-addon2">
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="input-group ">
+
+                                                    <span class="input-group-addon" id="sizing-addon3"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span></span>
+                                                    <input type="text" class="form-control" name="mobile" placeholder="Mobile" value="{{ user.mobile }}"aria-describedby="sizing-addon3">
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="input-group ">
+
+                                                    <span class="input-group-addon" id="sizing-addon4"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></span>
+                                                    <input type="text" class="form-control" name="address" placeholder="Address" value="{{ user.address }}" aria-describedby="sizing-addon4">
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="input-group ">
+
+                                                    <span class="input-group-addon" id="sizing-addon5"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
+                                                    <input type="email" class="form-control" name="email" placeholder="Email" value="{{ user.email }}"aria-describedby="sizing-addon5">
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="input-group ">
+
+                                                    <span class="input-group-addon" id="sizing-addon12"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span></span>
+                                                    <select name="gender" class="form-control">
+                                                        {% if user.gender == 'male' %}
+                                                        <option value="male" >male</option>
+                                                        <option value="female" >female</option>                                         
+                                                        {% else %}
+                                                        <option value="female" >female</option>                                         
+                                                        <option value="male" >male</option>
+                                                        {% endif %}
+                                                    </select>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                        </p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <div class="panel panel-default">
+                                    <!-- Default panel contents -->
+                                    <div class="panel-heading">Credentials</div>
+                                    <div class="panel-body">
+                                        <p>
+                                        <ul class="list-group">                                      
+                                            <li class="list-group-item">
+                                                <div class="input-group ">
+
+                                                    <span class="input-group-addon" id="sizing-addon6"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+                                                    <input type="password" class="form-control" name="pass" placeholder="Current Password" aria-describedby="sizing-addon6">
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="input-group ">
+
+                                                    <span class="input-group-addon" id="sizing-addon7"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></span>
+                                                    <input type="password" class="form-control" name="newpass" placeholder="New Password" aria-describedby="sizing-addon7">
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="input-group ">
+
+                                                    <span class="input-group-addon" id="sizing-addon8"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></span>
+                                                    <input type="password" class="form-control" name="repass" placeholder="Confirm Password" aria-describedby="sizing-addon8">
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel panel-default">
+                                            <!-- Default panel contents -->
+                                            <div class="panel-heading">Actions</div>
+                                            <div class="panel-body">
+                                                <p>
+                                                <ul class="list-group">                                      
+                                                    <li class="list-group-item">
+                                                        <button type="submit" class="btn btn-primary" >Update</button>
+                                                        <button type="button" id="account-delete" class="btn btn-danger"  >Delete Account</button>
+                                                    </li>
+                                                </ul>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{ token_put()|raw }}
+                    </form>
+                </div>
+                
+                <div class="section tab-pane" id="admin">
+                    <span class="label label-success">replied</span>
+                    <span class="label label-warning">bending</span>
+                    <span class="label label-danger">refused</span>
+                    <form role="form" action="{{ url_route('patient.reply') }}" id="admin-form" method="post" enctype="multipart/form-data">
+                        <table class="table"> 
+                            <thead> 
+                                <tr> 
+                                    <th>Patient ID</th> 
+                                    <th>Patient Name</th>
+                                    <th>Diagnostic</th>
+                                    <th>Complain</th>
+                                    <th>Date/Time</th>
+                                    <th>Mark</th>
+                                </tr> 
+                            </thead> 
+                            {% if requests is not empty %}
+                            <tbody> 
+                                {% for request in requests %}
+                                <tr> 
+                                    <th scope="row">{{ request.patient.id }}</th> 
+                                    <td><a href="#" class="patient" data-patient-id="{{ request.patient.id }}">{{ request.patient.name }}</a></td> 
+                                    <td>{{ request.diagnostic }}</td> 
+                                    <td>{{ strip(request.description)|raw }} <a data-complain-id="{{ request.id }}" class="read-more" href="#">Read more...</a>
+                                    </td>  
+
+                                    <td>{{ time( request.created_at ) }}</td> 
+
+                                    <td><input type="checkbox" name="marks[]" value="{{ request.id }}"/></td> 
+                                </tr> 
+                                {% endfor %}
+                            </tbody> 
+                            {% endif %}                               
+                        </table>
+                        <div class="row">
+                            {% if requests is not empty %}
+                            
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <!-- Default panel contents -->
+                                    <div class="panel-heading">Actions</div>
+                                    <div class="panel-body">
+                                        <p>
+                                        <ul class="list-group">                                      
+
+                                            <li class="list-group-item">
+                                                <div class="form-group input-group col-xs-12 floating-label-form-group message-addon">
+                                                    <span class="input-group-addon"> <i class="fa fa-paragraph fa-lg"></i> </span>
+                                                    <label for="sug">Reply</label>
+                                                    <textarea placeholder="Reply" class="form-control" name="reply" id="sug" rows="5"></textarea>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item text-center">
+                                                <button type="submit" class="btn btn-primary" >Send</button>
+                                                <button type="button" id="admin-complain-delete" class="btn btn-danger" >Delete</button>
+                                                <button type="reset" class="btn btn-default"  >Clear</button>
+                                            </li>
+                                        </ul>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        {{ token_input(false)|raw }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+{% endblock %}

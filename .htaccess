@@ -1,0 +1,30 @@
+RewriteEngine on
+# Disable directory browsing
+Options All -Indexes
+
+# Protect the htaccess file
+<Files .htaccess>
+Order Allow,Deny
+Deny from all
+</Files>
+
+# Prevent access to files 
+# <FilesMatch "\w*\.(png|jpg)>
+# Order Allow,Deny
+# Deny from all
+# </FilesMatch>
+# serve custom error pages
+
+# This will add a charset to the Content-Type response header. 
+AddDefaultCharset UTF-8
+
+# Prevent DIRECT URL ACCESS
+RewriteCond %{HTTP_REFERER} !^http://(www\.)?localhost [NC] 
+RewriteCond %{HTTP_REFERER} !^http://(www\.)?localhost.*$ [NC] 
+RewriteRule \.(gif|jpg|png|css|js)$ - [F]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]

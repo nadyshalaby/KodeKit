@@ -1,0 +1,168 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    transition: all 1s linear 0s;
+
+}
+
+.nav-bar {
+    background-color:rgb(26,191,196);
+    height: 70px;
+    position: fixed;
+    z-index: 1000;
+    top:0;
+    width: 100%;
+}
+
+.seika{
+    font-size: 30px;
+    padding: 20px;
+    color: #222;
+    background-color: #eee;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 50px;
+    margin-top: 4px;
+    transition: all .5s ease 0s;
+
+}
+
+.seika:hover {
+    border-radius: 10%;
+    margin-left: 70px;
+    margin-top: 10px;
+    padding-right: 100px;
+
+}
+
+
+.social-media a{
+    display: inline-block;
+
+    color: #000;
+
+
+}
+
+.f:hover{
+    color:#405D9B;
+}
+.g:hover{
+    color:#f00 ;
+}
+.t:hover{
+    color: #5bc0de;
+}
+
+
+.arrow{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+
+}
+
+.arrow i{
+    font-size: 30px;
+}
+
+
+
+/*  bootstrap edit  ***********************************/
+
+
+.navbar-right{
+    margin-right: 131px;
+}
+
+.navbar-default{
+    background-color:rgb(26,191,196);
+}
+
+.navbar-default .navbar-nav > li > a{
+    color: #efefef;
+    font-weight: bold;
+}
+
+.navbar-default .navbar-nav > li > a:hover{
+    color: #000;
+    background-color: #fff;
+}
+
+.navbar > .container-fluid .navbar-brand{
+    margin-left: 150px;
+}
+
+.navbar-default .navbar-brand:hover{
+    background-color: #fff;
+}
+
+.navbar{
+    margin-bottom: 0;
+}
+
+.carousel-inner > .item > img{
+    height: 300px;
+    width: 100%;
+}
+
+.main{
+    background-color:rgb(190,254,250);
+    padding:5px;;
+    border: 2px;
+    border-color: rgb(69,69,69);
+}
+
+.main h1{
+    color:rgb(15,82,85);
+    text-align: center;
+}
+
+.head{
+    background-color:rgb(255,191,191);
+    padding:2px;
+    border-color: rgb(69,69,69);
+    border: 2px;
+}
+
+
+.head p{
+    color:rgb(0,193,193);
+    text-align:right;font-size: medium;
+}
+
+.body{
+    background: url('../images/05.png') left top fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.end {margin-bottom:50px;
+      padding:10px;
+      border-color: rgb(69,69,69);
+      border: 2px;
+      height: 300px;
+      background-color:rgb(109,254,243);
+      text-align: center; 
+}
+
+.end label { margin:10px;
+             padding:8px;
+             text-align: center;;
+             color:#000000;
+             border-color: rgb(225,157,206);
+             border: 2px;
+}
+
+.contact{height:300;
+         padding: 50px; 
+         background-color: rgb(255,159,190);}
+
+
+table{
+    font-size: 14px;
+}
