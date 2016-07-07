@@ -3,10 +3,16 @@
 use App\Classes\User;
 use App\Libs\Statics\Func;
 use App\Libs\Statics\Url;
-use App\Models\UserModel;
+use App\Models\GoogleModel;
 use Carbon\Carbon;
+use Facebook\Facebook;
 
 return [
+    'config' => [
+        'cache' => Url::resource('cache'),
+        'debug' => true, //used for development purposes 
+        // 'auto_reload' => true, // if it didn't set it will be determined from the value of debug option
+    ],
     /**
      *  list the names of the classes that its functions will be statically called in Twig Environments 
      *  list the objects that its functions will be dynamically called in Twig Environments 

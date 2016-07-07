@@ -15,12 +15,12 @@
     ],
     "require":
             {
-                "facebook/php-sdk-v4": "^5.1",
+                "facebook/php-sdk-v4": "*",
                 "php": "^5.4|^7.0",
-                "google/apiclient": "^1.0",
-                "swiftmailer/swiftmailer": "^5.4",
-                "twig/twig": "^1.24",
-                "nesbot/carbon": "^1.21",
+                "google/apiclient": "*",
+                "swiftmailer/swiftmailer": "*",
+                "twig/twig": "*",
+                "nesbot/carbon": "*",
                 "symfony/var-dumper": "*"
             },
     "autoload": {
