@@ -312,7 +312,7 @@ class DB {
      * @return boolean
      */
     public function buildDB() {
-        $filename = Url::resource("databases") . "/" . Config::app('mysql>dbfile');
+        $filename = path("resources.databases") . "/" . Config::app('mysql>dbfile');
         $dbrestore = Config::app('mysql>dbrestore');
         $op_data = '';
         if (file_exists($filename) && $dbrestore === true) {

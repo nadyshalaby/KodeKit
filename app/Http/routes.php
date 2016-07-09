@@ -1,9 +1,7 @@
 <?php
 
-use App\Libs\Statics\Url;
-
 $route->get('/test', function () {
-    return mime_content_type(Url::resource("images/flag_eg.jpg"));
+    return path('resources/databases/clinic/sql');
 });
 $route->get('/', [
     'controller' => 'Home@index',

@@ -1,10 +1,15 @@
 <?php
 
+use App\Libs\Statics\Response;
 use App\Libs\Statics\Url;
 use App\Libs\Statics\View;
 
 function view($path, $args = []) {
     return View::show($path, $args);
+}
+
+function path($path) {
+    return Url::path($path);
 }
 
 function twig($path, $args = []) {
@@ -16,15 +21,15 @@ function route($path, $args = []) {
 }
 
 function redirect($location, $with = [], $after = 0) {
-    App\Libs\Statics\Response::redirectTo($location, $with, $after);
+    Response::redirectTo($location, $with, $after);
 }
 
 function goBack($with = [], $after = 0) {
-    App\Libs\Statics\Response::redirectBack($with, $after);
+    Response::redirectBack($with, $after);
 }
 
 function refresh($after = 0) {
-    App\Libs\Statics\Response::refresh($after);
+    Response::refresh($after);
 }
 
 function escape($string) {

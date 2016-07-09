@@ -17,6 +17,7 @@ use Twig_SimpleFilter;
 use Twig_SimpleFunction;
 use function getClassBaseName;
 use function multiexplode;
+use function path;
 
 abstract class View {
 
@@ -30,7 +31,7 @@ abstract class View {
             ${$key} = $value;
         }
         $pagename = multiexplode(['.', '/', '>', '|'], $path)[0];
-        require_once Url::view($path);
+        require_once path('resources.views.'.$path.'php');
     }
 
     /**
@@ -41,7 +42,7 @@ abstract class View {
      */
     public static function twig($path, $args = []) {
         if (is_null(self::$_twig)) {
-            $loader = new Twig_Loader_Filesystem(__DIR__ . "/../../../resources/views/");
+            $loader = new Twig_Loader_Filesystem(path('resources.views'));
             self::$_twig = new Twig_Environment($loader,  Config::twig('config'));
 
             // load functions of defined classes into Twig Environment

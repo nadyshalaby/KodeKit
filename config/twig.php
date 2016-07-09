@@ -2,14 +2,13 @@
 
 use App\Classes\User;
 use App\Libs\Statics\Func;
-use App\Libs\Statics\Url;
 use App\Models\GoogleModel;
 use Carbon\Carbon;
 use Facebook\Facebook;
 
 return [
     'config' => [
-        'cache' => Url::resource('cache'),
+        'cache' => path('resources.cache'),
         'debug' => true, //used for development purposes 
         // 'auto_reload' => true, // if it didn't set it will be determined from the value of debug option
     ],
