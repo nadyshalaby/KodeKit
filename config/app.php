@@ -2,7 +2,7 @@
 
 return [
     'url' => [
-        'app' => 'http://localhost/kodekit/',
+        'app' => 'http://localhost/clinic/',
         'error' => [
             '301' => 'error/301.php',
             '401' => 'error/401.php',

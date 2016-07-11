@@ -257,9 +257,9 @@
                         </div>
                         {{ token_input(false)|raw }}
                     </form>
-                    
+
                 </div>
-                
+
                 <div class="tab-pane section" id="messages">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                         {% if msgs is not empty %}
@@ -287,7 +287,16 @@
                             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="panel-body">
                                     <h6><b><u>Since</u> :</b></h6>
-                                    <p>{{ readable_time( msg.created_at ) }}</p>
+                                    <p>{{ readable_time( msg.created_at ) }}</p
+                                    {% if msg.report is not empty %}
+                                    <h6><b><u>Report</u> :</b></h6>
+                                    <p>  
+                                        <br />
+                                        <a href="{{ url_route('message.report' , {'id' : msg.id }) }}" class="btn btn-info" >Download</a>                                           
+                                    </p>
+                                    {% endif %}
+
+
                                     <h6><b><u>Says</u> :</b></h6>
                                     <p>{{ msg.body }}</p>
                                 </div>
@@ -298,7 +307,7 @@
                     </div>
                 </div>
             </div>
-                </div>
-            </div>
-          
-{% endblock %}
+        </div>
+    </div>
+
+    {% endblock %}

@@ -32,8 +32,25 @@ class LoginController extends Controller {
         $email = Request::getParam('email');
         $pass = Request::getParam('pass');
         $remember = !empty(Request::getParam('remember'));
+        $admin = !empty(Request::getParam('admin'));
+        
         $user = UserModel::first('email = ?', [$email]);
         if ($user && Hash::match($pass, $user->pass)) {
+            $permission = PermissionModel::first('user_id = ?' , [$user->id])->permission;
+            
+            // check permision type for the user
+            if ($admin && $permission != 'admin') {
+                Session::flash("msg", '<li><span class="msg-error">Error: </span> Ooops!... No admin found (wrong email or password ) , let\'s try one more time!</li>');
+                Session::flash("data", Request::getALlParams());
+                goBack();
+                exit;
+            }else if (!$admin && $permission == 'admin') {
+                Session::flash("msg", '<li><span class="msg-error">Error: </span> Ooops!... No User found (wrong email or password ) , let\'s try one more time!</li>');
+                Session::flash("data", Request::getALlParams());
+                goBack();
+                exit;
+            }
+            
             $u = new User($user->hash);
             $u->login($remember);
             redirect(route('user.profile'));
@@ -99,7 +116,7 @@ class LoginController extends Controller {
             Response::error(401);
         }
     }
-    
+
     public function google() {
         $client = new Google_Client;
         $auth = new GoogleModel($client);
@@ -108,7 +125,7 @@ class LoginController extends Controller {
             $u->login();
 
             redirect(route('user', [
-                        'slug' => $auth->getUserSlug()
+                'slug' => $auth->getUserSlug()
             ]));
             return;
         }
@@ -123,7 +140,7 @@ class LoginController extends Controller {
             $u->login();
 
             redirect(route('user', [
-                        'slug' => $fb->getUserSlug()
+                'slug' => $fb->getUserSlug()
             ]));
             return;
         }

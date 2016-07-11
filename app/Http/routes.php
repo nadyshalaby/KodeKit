@@ -85,6 +85,10 @@ $route->ajax('/user/delete/', [
 ]);
 // End User Section
 // Start Message Section
+$route->get('/message/report/:id', [
+    'controller' => 'Message@report',
+    'name' => 'message.report',
+]);
 $route->ajax('/message/seen/:id', [
     'controller' => 'Message@seen',
     'token' => false

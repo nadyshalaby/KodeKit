@@ -13,6 +13,7 @@ class MessageModel extends Model {
         'user_id',
         'title',
         'body',
+        'report',
         'viewed',
         'created_at',
         'updated_at',

@@ -15,14 +15,6 @@ use App\Libs\Concretes\Router;
 use function multiexplode;
 
 abstract class Url {
-    
-    const RES  = "resources";
-    const PUB  = "public";
-    const PUB_IMG  = "public/images";
-    const PUB_JS  = "public/";
-    const PUB_CSS  = "public";
-    const PUB_FONT  = "public";
-    const VIEW  = "resources";
 
     public static function app() {
         return Config::app('url.app');
@@ -49,20 +41,17 @@ abstract class Url {
     }
 
     public static function path($file) {
-        $chunks = multiexplode(['.','/', '>', '|'], $file);
+        $chunks = multiexplode(['.', '/', '>', '|'], $file);
         $file = implode('/', $chunks);
         $path = __DIR__ . "/../../../$file";
-        if(is_dir($path)){
+        if (is_dir($path)) {
             return $path;
-        }else{
-           $file_name = implode('.',array_slice($chunks, -2,2));
-           $file_parent = implode('/',array_slice($chunks, 0,-2));
-           $path = __DIR__ . "/../../../$file_parent/$file_name";
-           if(is_file($path)){
-               return $path;
-           }
+        } else {
+            $file_name = implode('.', array_slice($chunks, -2, 2));
+            $file_parent = implode('/', array_slice($chunks, 0, -2));
+            $path = __DIR__ . "/../../../$file_parent/$file_name";
+            return $path;
         }
-        return null;
     }
 
     public static function route($name, $params = []) {
